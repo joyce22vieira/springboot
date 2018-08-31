@@ -3,30 +3,35 @@ package ifal.edu.pw2.demo.modelo;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Paciente{
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer id_paciente;
 	
 	@Column
 	private String nome;
 	
 	@Column
 	private String cpf;
+
+	@OneToMany(mappedBy="paciente")
+	private List<Atendimento> atendimento;
 	
+	@OneToOne
+	private Plano plano; 
+
 	public Paciente() {
-	
+		
 	}
-	
-	@OneToMany(mappedBy="Paciente")
-	private List<Atendimento> atendimentos;
 	
 	public String getCpf() {
 		return cpf;
@@ -38,15 +43,15 @@ public class Paciente{
 
 	public Paciente(Integer id, String nome) {
 		this.nome = nome;
-		this.id = id;
+		this.id_paciente = id;
 	}
 
 	public Integer getId() {
-		return id;
+		return id_paciente;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.id_paciente = id;
 	}
 
 	public String getNome() {
@@ -61,7 +66,7 @@ public class Paciente{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((id_paciente == null) ? 0 : id_paciente.hashCode());
 		return result;
 	}
 
@@ -74,10 +79,10 @@ public class Paciente{
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (id_paciente == null) {
+			if (other.id_paciente != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id_paciente.equals(other.id_paciente))
 			return false;
 		return true;
 	}

@@ -13,7 +13,7 @@ public class Medico {
 
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Integer id_medico;
 	
 	@Column
 	private String nome;
@@ -24,8 +24,8 @@ public class Medico {
 	@Column
 	private String crm;
 	
-	@OneToMany(mappedBy="Medico")
-	private List<Atendimento> atendimentos;
+	@OneToMany(mappedBy="medico")
+	private List<Atendimento> atendimento;
 	
 	public String getCrm() {
 		return crm;
@@ -52,14 +52,14 @@ public class Medico {
 	}
 
 	public Integer getId() {
-		return id;
+		return id_medico;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((id_medico == null) ? 0 : id_medico.hashCode());
 		return result;
 	}
 
@@ -72,10 +72,10 @@ public class Medico {
 		if (getClass() != obj.getClass())
 			return false;
 		Medico other = (Medico) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (id_medico == null) {
+			if (other.id_medico != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id_medico.equals(other.id_medico))
 			return false;
 		return true;
 	}

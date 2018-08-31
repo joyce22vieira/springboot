@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Atendimento {
@@ -22,11 +20,11 @@ public class Atendimento {
 	private Date dataConsulta;
 
 	@ManyToOne
-	@JoinColumn(name="id", nullable=false)
+	@JoinColumn(name="id_paciente", nullable=false)
 	private Paciente paciente;
 
 	@ManyToOne
-	@JoinColumn(name="id", nullable=false)
+	@JoinColumn(name="id_medico", nullable=false)
 	private Medico medico;
 
 	public Integer getId() {
