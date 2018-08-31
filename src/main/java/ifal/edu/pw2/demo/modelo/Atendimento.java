@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Atendimento {
@@ -26,6 +27,10 @@ public class Atendimento {
 	@ManyToOne
 	@JoinColumn(name="id_medico", nullable=false)
 	private Medico medico;
+	
+	@OneToOne
+	private Plano plano;
+	
 
 	public Integer getId() {
 		return id;
