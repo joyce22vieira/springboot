@@ -2,9 +2,12 @@ package ifal.edu.pw2.demo.modelo;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,18 +18,19 @@ public class Atendimento {
 	@GeneratedValue
 	private Integer id;
 	
-	@Temporal(TemporalType.DATE)
+	@Column
 	private Date dataConsulta;
-	
-	@Temporal(TemporalType.TIME)
-	private Date horaConsulta;
-	
-	public Date getHoraConsulta() {
-		return horaConsulta;
-	}
 
-	public void setHoraConsulta(Date horaConsulta) {
-		this.horaConsulta = horaConsulta;
+	@ManyToOne
+	@JoinColumn(name="id", nullable=false)
+	private Paciente paciente;
+
+	@ManyToOne
+	@JoinColumn(name="id", nullable=false)
+	private Medico medico;
+
+	public Integer getId() {
+		return id;
 	}
 
 	public Date getDataConsulta() {
@@ -35,10 +39,6 @@ public class Atendimento {
 
 	public void setDataConsulta(Date dataConsulta) {
 		this.dataConsulta = dataConsulta;
-	}
-
-	public Integer getId() {
-		return id;
 	}
 
 	@Override

@@ -12,38 +12,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ifal.edu.pw2.demo.modelo.Pessoa;
-import ifal.edu.pw2.demo.repositorios.PessoaRepository;
+import ifal.edu.pw2.demo.modelo.Paciente;
+import ifal.edu.pw2.demo.repositorios.PacienteRepository;
 
 @RestController
-@RequestMapping("/api/pessoa")
-public class PessoaResource {
+@RequestMapping("/api/paciente")
+public class PacienteResource {
 	
 	@Autowired
-	PessoaRepository pessoaRepository;
+	PacienteRepository pacienteRepository;
 	
 	@GetMapping
-	public List<Pessoa> get(){
-		return pessoaRepository.findAll();
+	public List<Paciente> get(){
+		return pacienteRepository.findAll();
 	}
 	
 	@GetMapping("{id}")
-	public Pessoa get(@PathVariable("id") Integer id) {
-		return pessoaRepository.getOne(id);
+	public Paciente get(@PathVariable("id") Integer id) {
+		return pacienteRepository.getOne(id);
 	}
 	
 	@PostMapping
-	public Pessoa save(@RequestBody Pessoa pessoa) {
-		return pessoaRepository.save(pessoa);
+	public Paciente save(@RequestBody Paciente paciente) {
+		return pacienteRepository.save(paciente);
 	}
 	
 	@PutMapping
-	public Pessoa update(@RequestBody Pessoa pessoa) {
-		return pessoaRepository.save(pessoa);
+	public Paciente update(@RequestBody Paciente paciente) {
+		return pacienteRepository.save(paciente);
 	}
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
-		pessoaRepository.deleteById(id);
+		pacienteRepository.deleteById(id);
 	}
 }

@@ -1,20 +1,16 @@
 package ifal.edu.pw2.demo.modelo;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Pessoa implements Serializable{
+public class Paciente{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -25,10 +21,13 @@ public class Pessoa implements Serializable{
 	@Column
 	private String cpf;
 	
-	public Pessoa() {
+	public Paciente() {
 	
 	}
-
+	
+	@OneToMany(mappedBy="Paciente")
+	private List<Atendimento> atendimentos;
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -37,7 +36,7 @@ public class Pessoa implements Serializable{
 		this.cpf = cpf;
 	}
 
-	public Pessoa(Integer id, String nome) {
+	public Paciente(Integer id, String nome) {
 		this.nome = nome;
 		this.id = id;
 	}
@@ -74,7 +73,7 @@ public class Pessoa implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Paciente other = (Paciente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -82,5 +81,7 @@ public class Pessoa implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 	
 }
