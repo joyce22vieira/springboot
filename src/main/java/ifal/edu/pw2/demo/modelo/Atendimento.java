@@ -28,7 +28,8 @@ public class Atendimento {
 	@JoinColumn(name="id_medico", nullable=false)
 	private Medico medico;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="id_plano")
 	private Plano plano;
 	
 
